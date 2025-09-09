@@ -39,7 +39,7 @@ h2 {
 .section {
   border: 1px solid #000;
   background: #bbbbbb;
-  max-height: 200px;
+  max-height: 130px;
   overflow: hidden;
   position: relative;
   scrollbar-width: none;
