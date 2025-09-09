@@ -39,7 +39,7 @@ h2 {
 .section {
   border: 1px solid #000;
   background: #bbbbbb;
-  max-height: 130px;
+  max-height: 200px;
   overflow: hidden;
   position: relative;
   scrollbar-width: none;
@@ -104,6 +104,9 @@ h2 {
     grid-template-columns: 1fr 1fr;
     margin-top: 2.25rem;
   }
+  .section {
+    max-height: 130px;
+  }
   .section-3 {
     grid-column: span 2;
   }
@@ -133,7 +136,7 @@ h2 {
   .section-container {
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 3.5rem;
-    gap: 2rem;
+    gap: 1.5rem;
   }
   .section-3 {
     grid-column: auto;
