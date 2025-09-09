@@ -1,0 +1,27 @@
+
+/* Mobile version */
+@media only screen and (max-width: 767px) {
+  h1 {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+/* Tablet version */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  h1 {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Desktop version */
+@media only screen and (min-width: 992px) {
+  h1 {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+}
