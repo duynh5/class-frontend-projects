@@ -27,7 +27,7 @@ jobs:
       - name: Upload static files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./module2-solution
+          path: .
 
       - name: Deploy
         uses: actions/deploy-pages@v4
