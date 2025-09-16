@@ -1,0 +1,58 @@
+.custom-navbar {
+  background-color: #cccccc;
+  color: black;
+}
+
+.custom-navbar-brand {
+  color: black;
+  font-weight: bold;
+}
+
+.custom-navbar-toggle {
+  background-color: #ffffff;
+}
+
+#mobile-menu {
+  padding: 0px;
+}
+
+.navbar-nav {
+  margin: 0px;
+}
+
+.custom-menu-item a {
+  color: black;
+  background-color: #eeeeee;
+  border-bottom: 1px solid #bbbbbb;
+}
+
+.custom-header {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.custom-section-container {
+  padding: 0px 30px;
+}
+.section-box {
+  background: #bbbbbb;
+  max-height: 700px;
+  margin-bottom: 20px;
+  padding: 0px 16px;
+  padding-bottom: 16px;
+  overflow: hidden;
+  position: relative;
+  scrollbar-width: none;
+}
+
+.section-box:hover {
+  overflow-y: auto;
+  cursor: ns-resize;
+  scrollbar-width: thin;
+}
+.section-box::-webkit-scrollbar {
+  width: 0;
+}
+.section-box:hover::-webkit-scrollbar {
+  width: 6px;
+}
