@@ -22,6 +22,7 @@ $(function () {
     "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/";
   var menuItemsTitleHtml = "snippets/menu-items-title.html";
   var menuItemHtml = "snippets/menu-item.html";
+  var aboutHtml = "snippets/about.html";
 
   // Convenience function for inserting innerHTML for 'select'
   var insertHtml = function (selector, html) {
@@ -44,12 +45,20 @@ $(function () {
     return string;
   };
 
-  // Remove the class 'active' from home and switch to Menu button
+  var allNavs = ["#navHomeButton", "#navMenuButton", "#navAboutButton"];
+
+  // Remove the class 'active' from all navs
+  var removeActiveClass = function (allNavs) {
+    for (var i = 0; i < allNavs.length; i++) {
+      var classes = document.querySelector(allNavs[i]).className;
+      classes = classes.replace(new RegExp("active", "g"), "");
+      document.querySelector(allNavs[i]).className = classes;
+    }
+  };
+
+  // Remove the class 'active' from other navs and switch to Menu button
   var switchMenuToActive = function () {
-    // Remove 'active' from home button
-    var classes = document.querySelector("#navHomeButton").className;
-    classes = classes.replace(new RegExp("active", "g"), "");
-    document.querySelector("#navHomeButton").className = classes;
+    removeActiveClass(allNavs);
 
     // Add 'active' to menu button if not already there
     classes = document.querySelector("#navMenuButton").className;
@@ -58,6 +67,19 @@ $(function () {
       document.querySelector("#navMenuButton").className = classes;
     }
   };
+
+  // Remove the class 'active' from other navs and switch to About button
+  var switchAboutToActive = function () {
+    removeActiveClass(allNavs);
+
+    // Add 'active' to About button if not already there
+    classes = document.querySelector("#navAboutButton").className;
+    if (classes.indexOf("active") === -1) {
+      classes += " active";
+      document.querySelector("#navAboutButton").className = classes;
+    }
+  };
+
 
   // On page load (before images or CSS)
   document.addEventListener("DOMContentLoaded", function (event) {
@@ -97,7 +119,8 @@ $(function () {
         // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
         // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
         // variable's name implies it expects.
-        // var chosenCategoryShortName = ....
+        var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
+
         // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
         // chosen category from STEP 2. Use existing insertProperty function for that purpose.
         // Look through this code for an example of how to do use the insertProperty function.
@@ -109,11 +132,12 @@ $(function () {
         // Hint: you need to surround the chosen category short name with something before inserting
         // it into the home html snippet.
         //
-        // var homeHtmlToInsertIntoMainPage = ....
+        var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName + "'");
+
         // TODO: STEP 4: Insert the produced HTML in STEP 3 into the main page
         // Use the existing insertHtml function for that purpose. Look through this code for an example
         // of how to do that.
-        // ....
+        insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
       },
       false
     ); // False here because we are getting just regular HTML from the server, so no need to process JSON.
@@ -142,6 +166,12 @@ $(function () {
       menuItemsUrl + categoryShort + ".json",
       buildAndShowMenuItemsHTML
     );
+  };
+
+  // Load the about page view
+  dc.loadAbout = function () {
+    showLoading("#main-content");
+    $ajaxUtils.sendGetRequest(aboutHtml, buildAndShowAboutHTML, false);
   };
 
   // Builds HTML for the categories page based on the data
@@ -280,6 +310,29 @@ $(function () {
 
     finalHtml += "</section>";
     return finalHtml;
+  }
+
+  // Builds HTML for the about page with random rating
+  function buildAndShowAboutHTML(aboutHtml) {
+    var randomRating = getRandomStarRating();
+
+    // Set star classes based on random rating
+    for (var i = 1; i <= 5; i++) {
+      var starClass = i <= randomRating ? "fa fa-star" : "fa fa-star-o";
+      aboutHtml = insertProperty(aboutHtml, "class" + i, starClass);
+    }
+
+    // Add rating text
+    var ratingText = randomRating + "-star rating";
+    aboutHtml = insertProperty(aboutHtml, "ratingText", ratingText);
+
+    switchAboutToActive();
+    insertHtml("#main-content", aboutHtml);
+  }
+
+  // Generate random number from 1 to 5 (inclusive)
+  function getRandomStarRating() {
+    return Math.floor(Math.random() * 5) + 1;
   }
 
   // Appends price with '$' if price exists
