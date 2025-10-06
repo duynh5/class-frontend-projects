@@ -1,29 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="LunchCheck">
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <style>
-      .message { font-size: 1.3em; font-weight: bold; }
+      .message {
+        font-size: 1.3em;
+        font-weight: bold;
+        display: inline-block;
+        padding: 10px 15px;
+        border-radius: 5px;
+      }
+      .red {
+        color: red;
+      }
+      .green {
+        color: green;
+      }
+      .border-green {
+        border: 2px solid green;
+      }
+      .border-red {
+        border: 2px solid red;
+      }
     </style>
   </head>
 <body>
-   <div class="container">
+   <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
-             <input id="lunch-menu" type="text"
-             placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             <div class="row">
+                 <div class="col-sm-6">
+                     <input id="lunch-menu" type="text"
+                     placeholder="list comma separated dishes you usually have for lunch"
+                     class="form-control" ng-model="lunchItemsString">
+                 </div>
+                 <div class="col-sm-6 red">
+                  {{announceEmptyItemsDetectedString}}
+                 </div>
+             </div>
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default" ng-click="checkLunch()">Check If Too Much</button>
          </div>
-         <div class="form-group message">
-           <!-- Your message can go here. -->
+         <div class="form-group message" ng-class="messageClass">
+           {{message}}
          </div>
    </div>
 
+  <script src="angular.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
