@@ -1,0 +1,15 @@
+<ul ng-if="foundItems && foundItems.length > 0">
+  <li ng-repeat="item in foundItems" class="row">
+    <div class="col-md-9">
+      <strong>{{ item.name }}</strong> ({{ item.short_name }}): {{ item.description }}
+    </div>
+    <div class="col-md-3">
+      <button
+        class="btn btn-danger btn-sm"
+        ng-click="onRemove({index: $index});"
+      >
+        Don't want this one!
+      </button>
+    </div>
+  </li>
+</ul>

@@ -1,6 +1,21 @@
 h1 {
   margin-bottom: 30px;
 }
+.search-container {
+  height: 40px;
+}
+.message {
+  color: red;
+  text-align: start;
+  width: fit-content;
+}
+ul {
+  list-style: none;
+  padding: 10px 0px;
+}
+li {
+  padding: 10px 0px;
+}
 input[type="text"] {
   width: 200px;
   float: left;
