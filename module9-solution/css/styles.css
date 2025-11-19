@@ -1,16 +1,30 @@
 body {
   font-size: 1.2em;
+  margin: 0;
 }
 
-div.tabs > a, div.tabs > button {
+.layout {
+  margin: 0px 10px 0px 10px;
+}
+
+.header {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.category-name {
+  color: red;
+}
+
+.ui-tabs {
+  text-decoration: none;
+  color: #333;
   margin-right: 10px;
-  font-size: 1.2em;
+  font-style: italic;
 }
 
-div.tabs {
-  margin-bottom: 10px;
-}
-
-.activeTab {
+.active-tab {
   font-weight: bold;
+  color: blue;
 }

@@ -1,0 +1,17 @@
+<h2>
+  Menu Items for
+  <span class="category-name">{{ $ctrl.items.category.name }}</span>
+  [{{ $ctrl.categoryShortName }}]
+  ({{ $ctrl.items.menu_items.length >= 0 ? $ctrl.items.menu_items.length : '0' }} items)
+</h2>
+<div ng-if="$ctrl.items && $ctrl.items.menu_items.length > 0">
+  <ul>
+    <li ng-repeat="item in $ctrl.items.menu_items">
+      <strong>{{ item.name }}</strong> ({{ item.short_name }})
+      <p>{{ item.description }}</p>
+    </li>
+  </ul>
+</div>
+<div ng-if="!$ctrl.items.menu_items || $ctrl.items.menu_items.length === 0">
+  <p>No items found for the category {{ $ctrl.categoryShortName }}.</p>
+</div>
